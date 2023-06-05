@@ -1,7 +1,12 @@
 import React from 'react'
+import Sign from '../components/Sign'
 
 export default function SignUpPage() {
+
   return (
-    <div>SignUpPage</div>
+    <>
+    <Sign title={'회원가입'} action={'signup'}/>
+    </>
+   
   )
 }

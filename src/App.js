@@ -1,37 +1,25 @@
-import { useEffect } from "react"
-import HomePage from "./pages/HomePage"
+import React , {useState, useEffect} from "react";
+import { Reset } from "styled-reset";
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router';
+import { getTodos } from "./functions/api";
 
-const testPost = async () => {
-  const postBody = {
-    email: 'jessicak0828@gmail.com',
-    password: '1234@abcd'
-  }
-
-  const res = await fetch('https://www.pre-onboarding-selection-task.shop/auth/signin', {
-    method: 'POST',
-    body:JSON.stringify(postBody),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-
-  const result = await res.json()
-
-  console.log({res,result})
-
-  return result
-
-}
 
 function App() {
-  // useEffect(() => {
-  //   testPost()
-  // }, [])
-  
+  const [todolists, setTodolists] = useState([])
+  const getTodolists = async() => {
+    const todolists = await getTodos().data
+    setTodolists(todolists)
+  }
+  useEffect(()=>{getTodolists()},[])
   return (
-    <div className="App">
+    <>
+    <Reset/>
+    <RouterProvider router={router} todolists={todolists}/>
+      <div className="App">
    
-    </div>
+      </div>
+    </>
   );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import * as S from '../../styles/Button.styles'
  
-export default function SignButton({text, emailState, passwordState, onClick, dataTestid}) {
+export default function SignButton({className, text, emailState, passwordState, onClick, dataTestid}) {
   return (
-    <S.SignButton disabled={emailState && passwordState ? false : true} onClick={onClick} data-testid={dataTestid}>{text}</S.SignButton>
+    <S.Button className={className} disabled={emailState && passwordState ? false : true} onClick={onClick} data-testid={dataTestid}>{text}</S.Button>
   )
 }

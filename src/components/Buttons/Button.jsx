@@ -1,8 +1,8 @@
 import React from 'react'
-// import * as S from '../../styles/Button.styles'
-export default function Button({children, onClick,dataTestid}) {
+import * as S from '../../styles/Button.styles'
+export default function Button({children, onClick,dataTestid, className}) {
   
   return (
-  <button onClick={onClick} data-testid={dataTestid} >{children}</button>
+  <S.Button onClick={onClick} className={className} data-testid={dataTestid} >{children}</S.Button>
   )
 }

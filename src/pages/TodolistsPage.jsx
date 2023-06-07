@@ -12,8 +12,8 @@ export default function TodolistsPage() {
   }
   //create Todo
     const newTodoInputRef = useRef()
-    const keydownHandler = (e) => {
-      if(e.key === 'Enter'){
+    const addTodoHandler = (e) => {
+      if(e.key === 'Enter' || e.type === 'click' ){
         console.log(newTodoInputRef.current.value)
        createTodo(newTodoInputRef.current.value)
       } 
@@ -39,8 +39,8 @@ useEffect(()=>{
     <>
       <div>
         <div>
-          <input type="text" className='todoInput' ref={newTodoInputRef} onKeyDown={keydownHandler} data-testid="new-todo-input"/>
-          <button data-testid="new-todo-add-button">추가</button>
+          <input type="text" className='todoInput' ref={newTodoInputRef} onKeyDown={addTodoHandler} data-testid="new-todo-input"/>
+          <button data-testid="new-todo-add-button" onClick={addTodoHandler}>추가</button>
         </div>
         {todolists.length !== 0 && <TodosContainer todolists={todolists} setTodolists={setTodolists} getTodolists={getTodolists}/>}
       </div>

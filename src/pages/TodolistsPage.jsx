@@ -1,49 +1,51 @@
 import React , {useState,useEffect, useRef} from 'react'
-//import * as S from '../styles/TodolistsPage.styles'
-import { getTodos, createTodo } from '../functions/api'
+import { useNavigate } from 'react-router-dom'
+import Background from '../components/Background'
 import TodosContainer from '../components/TodosContainer'
+import Button from '../components/Buttons/Button'
+import logoutIcon from '../assets/icons/logout.png'
+import * as S from '../styles/TodolistsPage.styles'
+import { getTodos, createTodo } from '../functions/api'
+
 
 export default function TodolistsPage() {
   const [todolists, setTodolists] = useState([])
-  
+  const newTodoInputRef = useRef()
+  const navigate = useNavigate()
   const getTodolists = async() => {
     const todolists = await getTodos()
     setTodolists(todolists)
   }
-  //create Todo
-    const newTodoInputRef = useRef()
-    const addTodoHandler = (e) => {
-      if(e.key === 'Enter' || e.type === 'click' ){
-        console.log(newTodoInputRef.current.value)
-       createTodo(newTodoInputRef.current.value)
-      } 
-    }
-    
-  //   const todolist = [ {
-  //     "id": 1,
-  //     "todo": "todo2",
-  //     "isCompleted": false,
-  //     "userId": 1
-  //   },
-  //   {
-  //     "id": 2,
-  //     "todo": "todo3",
-  //     "isCompleted": true,
-  //     "userId": 1
-  //   }
-  // ]
-useEffect(()=>{
-  getTodolists()
-},[todolists])
+
+  const addTodoHandler = async(e) => {
+    if(e.key === 'Enter' || e.type === 'click' ){
+      const response = await createTodo(newTodoInputRef.current.value)
+      setTodolists([...todolists,response])
+    } 
+  }
+
+  const logoutHandler = () => {
+    localStorage.removeItem('access_token')
+    window.location.reload()
+  }
+
+  useEffect(()=>{
+  localStorage.getItem('access_token')? getTodolists() : navigate('/signin');
+}, [])
+
   return (
-    <>
-      <div>
-        <div>
-          <input type="text" className='todoInput' ref={newTodoInputRef} onKeyDown={addTodoHandler} data-testid="new-todo-input"/>
-          <button data-testid="new-todo-add-button" onClick={addTodoHandler}>추가</button>
-        </div>
-        {todolists.length !== 0 && <TodosContainer todolists={todolists} setTodolists={setTodolists} getTodolists={getTodolists}/>}
-      </div>
-    </>
+    <Background>
+      <S.Container>
+      <S.Header>
+      <h1>투두리스트</h1>
+        <img src={logoutIcon} alt="logout icon"  onClick={logoutHandler}/>
+      </S.Header>
+        <S.InputContainer>
+          <input type="text" className='todoInput' ref={newTodoInputRef} onKeyUp={addTodoHandler} data-testid="new-todo-input"/>
+          <Button className='todolistsInputBtn' dataTestid="new-todo-add-button" onClick={addTodoHandler}>추가</Button>
+        </S.InputContainer>
+        <>{todolists?.length !== 0 && <TodosContainer todolists={todolists} setTodolists={setTodolists} getTodolists={getTodolists} />}</>
+      </S.Container>
+    </Background>
   )
 }

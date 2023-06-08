@@ -12,23 +12,26 @@ export default function TodolistsPage() {
   const [todolists, setTodolists] = useState([])
   const newTodoInputRef = useRef()
   const navigate = useNavigate()
+
   const getTodolists = async() => {
     const todolists = await getTodos()
+
     setTodolists(todolists)
   }
 
   const addTodoHandler = async(e) => {
-    if(e.key === 'Enter' || e.type === 'click' ){
+      e.preventDefault()
       if (newTodoInputRef.current.value) {
         const response = await createTodo(newTodoInputRef.current.value)
         setTodolists([...todolists,response])
       } else {
         alert('내용을 입력해주세요')
       }
-    } 
-  }
+    }
+  
 
   const logoutHandler = () => {
+    alert('로그아웃하시나요?')
     localStorage.removeItem('access_token')
     window.location.reload()
   }
@@ -44,9 +47,9 @@ export default function TodolistsPage() {
       <h1>투두리스트</h1>
         <img src={logoutIcon} alt="logout icon"  onClick={logoutHandler}/>
       </S.Header>
-        <S.InputContainer>
-          <input type="text" className='todoInput' ref={newTodoInputRef} onKeyUp={addTodoHandler} data-testid="new-todo-input"/>
-          <Button className='todolistsInputBtn' dataTestid="new-todo-add-button" onClick={addTodoHandler}>추가</Button>
+        <S.InputContainer onSubmit={addTodoHandler}>
+          <input type="text" className='todoInput' ref={newTodoInputRef} data-testid="new-todo-input"/>
+          <Button type={'submit'} className='todolistsInputBtn' dataTestid="new-todo-add-button" >추가</Button>
         </S.InputContainer>
         <>{todolists?.length !== 0 && <TodosContainer todolists={todolists} setTodolists={setTodolists} getTodolists={getTodolists} />}</>
       </S.Container>

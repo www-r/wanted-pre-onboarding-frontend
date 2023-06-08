@@ -74,7 +74,7 @@ const validatePassword = (e) => {
           <SignButton className={'signButton'} text={title} onClick={clickHandler} emailState={emailState} passwordState={passwordState} 
           dataTestid={title === '로그인'? "signin-button" : "signup-button"}
           />
-         { title === '로그인' && <Button onClick={()=>{navigate('/signup')}}>회원가입하러 가기</Button>}
+         { title === '로그인' ? <Button onClick={()=>{navigate('/signup')}}>회원가입하러 가기</Button> : <Button onClick={()=>{navigate('/signin')}}>로그인하러 가기</Button> }
         </S.ButtonContainer>
       </S.SignContainer>
   

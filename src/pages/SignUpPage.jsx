@@ -11,7 +11,7 @@ export default function SignUpPage() {
     if(localStorage.getItem('access_token')){
       navigate('/todo')
     }
-  },[])
+  },[]) /* eslint-disable-line */
 
   return (
     <Background>

@@ -35,7 +35,7 @@ export default function TodolistsPage() {
 
   useEffect(()=>{
   localStorage.getItem('access_token')? getTodolists() : navigate('/signin');
-}, [])
+}, []) /* eslint-disable-line */
 
   return (
     <Background>

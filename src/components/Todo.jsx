@@ -3,7 +3,7 @@ import Button from './Buttons/Button'
 import * as S from '../styles/Todo.styles'
 import { updateTodo, deleteTodo } from '../functions/api'
 
-export default function Todo({id,todo, isCompleted, userId, getTodolists}) {
+export default function Todo({id,todo, isCompleted, todolists, setTodolists, getTodolists}) {
   const checkboxRef = useRef()
   const todoInputRef = useRef()
   const [checked, setChecked] = useState(isCompleted)
@@ -17,16 +17,24 @@ const clickEditButton = () => {
 }
 const submitHandler = (e) => {
   if(e.key === 'Enter' || e.type === 'click'){
-  console.log(todoInputRef.current.value)
+  // console.log(todoInputRef.current.value)
   const updatedTodo = todoInputRef.current.value
-  updateTodo(id, updatedTodo, checked)
-  setEditable(!editable)}
+  if(updatedTodo){
+    updateTodo(id, updatedTodo, checked)
+    setEditable(!editable)
+  } else {
+    alert('내용을 입력해주세요.')
+  }
+
+}  
 }
 const clickCancelButton = () => {
   setEditable(!editable)
 }
 const clickDeleteButton = () => {
   deleteTodo(id)
+  const filteredTodos = todolists.filter(todo=> todo.id !== id)
+  setTodolists(filteredTodos)
 }
 
   return (
@@ -36,13 +44,13 @@ const clickDeleteButton = () => {
        {
        editable?
         <>
-          <input type='text' ref={todoInputRef} placeholder={todo} onKeyDown={submitHandler} dataTestid={"modify-input"} />
+          <input type='text' ref={todoInputRef} placeholder={todo} onKeyUp={submitHandler} data-testid={"modify-input"} />
           <Button onClick={submitHandler} dataTestid={"submit-button"}>제출</Button>
           <Button onClick={clickCancelButton} dataTestid={"cancel-button"}>취소</Button>
         </>
        :
         <>
-          <div>{todo}</div>
+          <div className='todoText'>{todo}</div>
           <Button onClick={clickEditButton} dataTestid={"modify-button"}>수정</Button>
           <Button onClick={clickDeleteButton} dataTestid={"delete-button"}>삭제</Button>
         </>}

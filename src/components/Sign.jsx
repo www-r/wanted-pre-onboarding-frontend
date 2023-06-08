@@ -60,7 +60,7 @@ const validatePassword = (e) => {
       <S.SignContainer>
         <h1>{title}</h1>
         <S.EmailContainer className='itemWrapper'>
-          <S.Label for='email-input'>email</S.Label>
+          <S.Label htmlFor='email-input'>email</S.Label>
           <input type="text" onChange={validateEmail} data-testid="email-input" id='email-input'/>
           <S.Message>{!emailState?'@를 포함해주세요':''}</S.Message>
         </S.EmailContainer>

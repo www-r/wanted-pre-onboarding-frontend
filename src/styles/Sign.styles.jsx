@@ -38,6 +38,9 @@ export const PasswordContainer = styled.div`
     position: absolute;
     right: 10px;
     top: 39.5px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `
 export const ButtonContainer = styled.div`

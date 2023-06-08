@@ -19,8 +19,12 @@ export default function TodolistsPage() {
 
   const addTodoHandler = async(e) => {
     if(e.key === 'Enter' || e.type === 'click' ){
-      const response = await createTodo(newTodoInputRef.current.value)
-      setTodolists([...todolists,response])
+      if (newTodoInputRef.current.value) {
+        const response = await createTodo(newTodoInputRef.current.value)
+        setTodolists([...todolists,response])
+      } else {
+        alert('내용을 입력해주세요')
+      }
     } 
   }
 

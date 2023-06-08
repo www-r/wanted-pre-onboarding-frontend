@@ -5,10 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import TodolistsPage from "./pages/TodolistsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-const loader = (path) => {
-  console.log(localStorage.getItem('access_token'));
-  localStorage.getItem("access_token") ? redirect('/todo') : redirect(path)
-}
+
 
 export const router = createBrowserRouter([
   {
@@ -19,20 +16,20 @@ export const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignInPage/>,
-    loader: loader('/signin')
+  
    
 
   },
   {
     path: "/signup",
     element: <SignUpPage/>,
-   loader: loader('/signup')
+   
 
   },
   {
     path: "/todo",
     element: <TodolistsPage/>,
-    loader : loader('/signin')
+   
   },
   {
     path: "*",

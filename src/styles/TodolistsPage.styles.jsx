@@ -24,7 +24,7 @@ border-radius: 5px;
   padding: 10px;
 
 `
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
   position: relative;
   padding: 0 0 20px ;
   input {

@@ -3,15 +3,19 @@ import styled from "styled-components";
 export const Todo = styled.li`
 margin: 10px 0;
   label {
-    display: grid;
-    grid-template-columns: 0.5fr 4fr 1fr 1fr;
-    gap: 10px;
-    align-items: center;
+   display:flex;
+    gap:10px;
     border-bottom: 2px solid #A9FAC2;
     padding: 0 0 10px 0;
-    .todoText {
-      font-size: 18px;
-    }
+    .todoWrapper {
+      display: grid;
+      grid-template-columns: 4fr 1fr 1fr;
+      align-items: center;
+      gap:10px;
+      p {
+        font-size:18px;
+      }
+      }
   [data-testid = "modify-input"] {
       outline:none;
       border: none;

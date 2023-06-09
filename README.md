@@ -1,8 +1,27 @@
-- 지원자의 성명
-- 프로젝트의 실행 방법
-- 데모 영상
-- 데모 영상은 배포 링크로 대체 가능하며, 배포가 되었고 배포된 사이트에서 기능이 모두 동작하면 가산점이 부여됩니다.
-- 배포된 사이트에서 기능이 정상동작 하지 않는다면 배포 가산점이 부여되지 않습니다
-- 기능이 정상 동작하지 않는 예시:
-새로고침하면 404 에러 페이지 표출
-- "/" URL이 아닌 "/signup"등의 경로로 바로 접속할 경우 404 에러 페이지 표출 등
+
+## 이름 : 김영은 
+
+## 프로젝트 실행 방법
+
+1. 로컬에서 실행 방법
+```
+3. git clone https://github.com/www-r/wanted-pre-onboarding-frontend.git
+4. cd wanted-pre-onboarding-frontend
+5. npm install
+6. npm run start
+```
+2. 배포 링크 
+[https://loginandtodolists.netlify.app/](https://loginandtodolists.netlify.app/)
+
+## 데모 영상 
+1 .로그인
+![로그인 투두리스트-로그인](https://github.com/www-r/wanted-pre-onboarding-frontend/assets/117294002/5c32761e-fb7e-40fd-b5fb-66110381f1ec)
+
+2. 투두리스트 
+![로그인 투두리스트-투두리스트](https://github.com/www-r/wanted-pre-onboarding-frontend/assets/117294002/5f681208-c559-45ce-94f9-77308d53e145)
+
+3. 로그아웃, 회원가입
+![로그인 마이페이지-로그아웃,회원가입](https://github.com/www-r/wanted-pre-onboarding-frontend/assets/117294002/718f4af0-8892-4f70-a255-66b0de2e1bd5)
+
+## 배포 링크 
+(https://loginandtodolists.netlify.app/)[https://loginandtodolists.netlify.app/]

@@ -5,10 +5,10 @@
 
 1. 로컬에서 실행 방법
 ```
-3. git clone https://github.com/www-r/wanted-pre-onboarding-frontend.git
-4. cd wanted-pre-onboarding-frontend
-5. npm install
-6. npm run start
+1. git clone https://github.com/www-r/wanted-pre-onboarding-frontend.git
+2. cd wanted-pre-onboarding-frontend
+3. npm install
+4. npm run start
 ```
 2. 배포 링크 
 [https://loginandtodolists.netlify.app/](https://loginandtodolists.netlify.app/)
